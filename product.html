@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link href="/css/styles.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body style="max-width: 100%">
+    <header>
+      <div class="row">
+        <div class="col-1" style="border-right: 1px solid black; padding: 1%">
+          <a href="index.html">Shop</a>
+        </div>
+        <div class="col-1" style="border-right: 1px solid black; padding: 1%">
+          <a href="#">Contact</a>
+        </div>
+        <div class="col-8"></div>
+        <div class="col-1" style="border-left: 1px solid black; padding: 1%">
+          <a href="signin.html">Sign in</a>
+        </div>
+        <div class="col-1" style="border-left: 1px solid black; padding: 1%">
+          <a href="cart.html">Cart</a>
+        </div>
+      </div>
+    </header>
+    <div class="row">
+    <div class="col-6" id="products"></div>
+    <div class="col-6">
+    <div style="display: flex">
+      <p>Quantity</p>
+      <button id="add">+</button>
+      <p input type="number" id="quantity"></p>
+
+      <button id="sub">-</button>
+    </div>
+         <p><h6>Excellent Combination with:</h6>   Vase Not Included</p>
+          <div>
+            <img src="flowerimage/Additional product card.png">
+            <img src="flowerimage/Additional product card (1).png">
+            <img src="flowerimage/Additional product card (2).png">
+            <img src="flowerimage/Additional product card (3).png">
+            <img src="flowerimage/Additional product card (4).png">
+          </div>
+
+
+          <p>Price options</p>
+          <p>
+          <input type="radio">
+          <label type="text"> One time purchase. Price $100 </label>
+        </p>
+        <p>
+          <input type="radio"> 
+          <label type="text"> now, and save 25% on this order.</label>
+        </p>
+          <button style="color: white; background-color: black" id="add_basket">
+            Add to basket
+          </button>
+        </div>
+      </div>
+      <div style="border: 1px solid black; padding: 30px;">
+        <h3 style="text-align: center;">You may also like…</h3>
+      </div>
+      <div><img src="flowerimage/content.png"></div>
+    </div>
+
+    <footer>
+      <div class="row">
+        <div
+          class="col-3"
+          style="border-right: 1px solid black; text-align: center"
+        >
+          <p>
+            Remember to offer beautiful flowers from Kyiv LuxeBouquets
+            valentines Day,Mothers day,Christmas....Reminds you 7 days before.No
+            spam or sharing your address
+          </p>
+          <p><input type="email" placeholder="Email" /></p>
+          <p><button type="submit">Remind</button></p>
+        </div>
+        <div class="col-3" style="border-right: 1px solid black">
+          <h4>Contact Us</h4>
+          <h5>Address</h5>
+          <p>15/4 Khreshchatyk Street,Kyiv</p>
+          <h5>phone</h5>
+          <p>+380980099777</p>
+          <h5>General Enquiry</h5>
+          <p>Kiev.florist.studio@gmail.com</p>
+          <h4>Follow Us</h4>
+          <i class="bi bi-instagram"></i>
+          <i class="bi bi-pinterest"></i>
+          <i class="bi bi-facebook"></i>
+          <i class="bi bi-twitter"></i>
+          <i class="bi bi-telegram"></i>
+        </div>
+        <div class="col-3" style="border-right: 1px solid black">
+          <h4>Shop</h4>
+          <p>All Products</p>
+          <p>Fresh flowers</p>
+          <p>Dried flowers</p>
+          <p>Live Flowers</p>
+          <p>Designer Vases</p>
+          <p>Aroma Candles</p>
+          <p>Freshner Diffuser</p>
+          <h4>Service</h4>
+          <p>flower Subscription</p>
+          <p>Wedding & Event Decor</p>
+        </div>
+        <div class="col-3">
+          <h4>About UsS</h4>
+          <p>Our Story</p>
+          <p>Blog</p>
+          <p>shipping & returns</p>
+          <p>Terms&conditions</p>
+          <p>Privacy policy</p>
+        </div>
+      </div>
+      </div>
+    </div>
+    </footer>
+    <script src="/js/product.js"></script>
+    <script>
+      function onLoad(event) {
+        const productEl = document.querySelector("#products");
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const productId = Number(urlParams.get("id"));
+
+        const product = Product_Details[productId];
+        const pageView = productView(product);
+        productEl.appendChild(pageView);
+
+        const addToCartEl = document.getElementById('add_basket');
+        addToCartEl.addEventListener('click', () => {
+            addToCart(product);
+        });
+      }
+
+      onLoad();
+      // addProduts();
+    </script>
+
+    <script>
+      let counter = 0;
+      let xElement = document.getElementById("quantity");
+      let addElement = document.getElementById("add");
+      addElement.addEventListener("click", increment);
+      function increment() {
+        if (counter < 10) {
+          counter = counter + 1;
+          document.getElementById("quantity").innerHTML = counter;
+        }
+      }
+      let subElement = document.getElementById("sub");
+      subElement.addEventListener("click", decrement);
+      function decrement() {
+        if (counter > 0) {
+          counter = counter - 1;
+          document.getElementById("quantity").innerHTML = counter;
+        }
+      }
+
+    </script>
+    <script src="js/cart.js"></script>
+    <script>
+      
+    </script>
+   
+  </body>
+</html>
